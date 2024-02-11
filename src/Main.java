@@ -23,12 +23,10 @@ public class Main {
         int choice = scanner.nextInt();
         if(choice == 1) {
             chessDesk();
-        }
-        else if (choice == 2) {
+        } else if (choice == 2) {
             System.out.print("Have a nice day!");
             System.exit(0);
-        }
-        else {
+        } else {
             System.out.print("Choose correct option");
             menuOpener();
         }
