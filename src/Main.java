@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class Main {
-    enum ChessFieldState {White, Black, Empty};
+    enum ChessFieldState {White, Black, Empty}
 
     static ChessFieldState [][] chessStates = new ChessFieldState[][] {
             {ChessFieldState.White, ChessFieldState.Empty, ChessFieldState.White, ChessFieldState.Empty, ChessFieldState.White, ChessFieldState.Empty, ChessFieldState.White, ChessFieldState.Empty},
@@ -61,7 +61,6 @@ public class Main {
         System.out.println("Hello! Ready to start?");
         System.out.println("1 — Yes, 2 — No");
         menuOpener();
-
     }
     public static void main(String[] args) {
         gameMenu();
