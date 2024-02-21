@@ -1,18 +1,7 @@
 import java.util.Scanner;
 
 public class Main {
-    enum ChessFieldState {White, Black, Empty}
 
-    static ChessFieldState [][] chessStates = new ChessFieldState[][] {
-            {ChessFieldState.White, ChessFieldState.Empty, ChessFieldState.White, ChessFieldState.Empty, ChessFieldState.White, ChessFieldState.Empty, ChessFieldState.White, ChessFieldState.Empty},
-            {ChessFieldState.Empty, ChessFieldState.White, ChessFieldState.Empty, ChessFieldState.White, ChessFieldState.Empty, ChessFieldState.White, ChessFieldState.Empty, ChessFieldState.White},
-            {ChessFieldState.White, ChessFieldState.Empty, ChessFieldState.White, ChessFieldState.Empty, ChessFieldState.White, ChessFieldState.Empty, ChessFieldState.White, ChessFieldState.Empty},
-            {ChessFieldState.Empty, ChessFieldState.Empty, ChessFieldState.Empty, ChessFieldState.Empty, ChessFieldState.Empty, ChessFieldState.Empty, ChessFieldState.Empty, ChessFieldState.Empty},
-            {ChessFieldState.Empty, ChessFieldState.Empty, ChessFieldState.Empty, ChessFieldState.Empty, ChessFieldState.Empty, ChessFieldState.Empty, ChessFieldState.Empty, ChessFieldState.Empty},
-            {ChessFieldState.Empty, ChessFieldState.Black, ChessFieldState.Empty, ChessFieldState.Black, ChessFieldState.Empty, ChessFieldState.Black, ChessFieldState.Empty, ChessFieldState.Black},
-            {ChessFieldState.Black, ChessFieldState.Empty, ChessFieldState.Black, ChessFieldState.Empty, ChessFieldState.Black, ChessFieldState.Empty, ChessFieldState.Black, ChessFieldState.Empty},
-            {ChessFieldState.Empty, ChessFieldState.Black, ChessFieldState.Empty, ChessFieldState.Black, ChessFieldState.Empty, ChessFieldState.Black, ChessFieldState.Empty, ChessFieldState.Black},
-    };
     public static void menu() {
         System.out.println("1 — Start new game\n2 — Records\n3 — History\n4 — Quit the game");
         Scanner scanner = new Scanner(System.in);
@@ -24,7 +13,8 @@ public class Main {
             System.out.println("Write name for Player 2");
             String name2 = scanner.next();
             System.out.println("Player 2 name: " + name2);
-            chessDesk();
+            Board newBoard = new Board();
+            newBoard.printBoard();
         } else if (choice == 2) {
             System.out.println("Work in progress");
             menu();
@@ -39,7 +29,7 @@ public class Main {
             } else if (exitChoice == 2){
                 menu();
             } else {
-                System.out.println("Choose correct option");
+                System.out.println("Choose correct option\n");
                 menu();
             }
         }
@@ -65,52 +55,4 @@ public class Main {
     public static void main(String[] args) {
         gameMenu();
     }
-    public static void chessDesk() {
-        alphabetLine();
-        int i = 0;
-        while(i < 8) {
-            chessLine(i++);
-        }
-        lineHead();
-        alphabetLine();
-    }
-    public static void alphabetLine() {
-        String alphabetLine = "\t\tA\t\tB\t\tC\t\tD\t\tE\t\tF\t\tG\t\tH";
-        System.out.println(alphabetLine);
-    }
-    public static void chessLine(int lineNumber) {
-        lineHead();
-        lineBody(lineNumber);
-    }
-    public static void lineBody(int lineNumber) {
-        System.out.print(lineNumber + 1);
-        System.out.print("\t");
-        String lineBodyBegin = "|\t";
-        String lineBodyEnd = "\t";
-
-        int i = 0;
-        while (i < 8) {
-            System.out.print(lineBodyBegin);
-            switch (chessStates[lineNumber][i]) {
-                case Black -> System.out.print((char)0x26AB);
-                case White -> System.out.print((char)0x26AA);
-                case Empty -> System.out.print("");
-            }
-            System.out.print(lineBodyEnd);
-            i++;
-        }
-        System.out.println("| " + (lineNumber + 1));
-    }
-    public static void lineHead() {
-        System.out.print("\t");
-        String lineHeadBrick = "+-------";
-        int i = 0;
-        while (i < 8) {
-            System.out.print(lineHeadBrick);
-            i++;
-        }
-        System.out.println("+");
-    }
 }
-
-
