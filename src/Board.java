@@ -1,16 +1,16 @@
 public class Board {
 
-    enum ChessFieldState {White, Black, Empty}
+    private enum ChessFieldState {White, Black, Empty}
 
-    static final Main.ChessFieldState[][] chessStates = new Main.ChessFieldState[][] {
-            {Main.ChessFieldState.White, Main.ChessFieldState.Empty, Main.ChessFieldState.White, Main.ChessFieldState.Empty, Main.ChessFieldState.White, Main.ChessFieldState.Empty, Main.ChessFieldState.White, Main.ChessFieldState.Empty},
-            {Main.ChessFieldState.Empty, Main.ChessFieldState.White, Main.ChessFieldState.Empty, Main.ChessFieldState.White, Main.ChessFieldState.Empty, Main.ChessFieldState.White, Main.ChessFieldState.Empty, Main.ChessFieldState.White},
-            {Main.ChessFieldState.White, Main.ChessFieldState.Empty, Main.ChessFieldState.White, Main.ChessFieldState.Empty, Main.ChessFieldState.White, Main.ChessFieldState.Empty, Main.ChessFieldState.White, Main.ChessFieldState.Empty},
-            {Main.ChessFieldState.Empty, Main.ChessFieldState.Empty, Main.ChessFieldState.Empty, Main.ChessFieldState.Empty, Main.ChessFieldState.Empty, Main.ChessFieldState.Empty, Main.ChessFieldState.Empty, Main.ChessFieldState.Empty},
-            {Main.ChessFieldState.Empty, Main.ChessFieldState.Empty, Main.ChessFieldState.Empty, Main.ChessFieldState.Empty, Main.ChessFieldState.Empty, Main.ChessFieldState.Empty, Main.ChessFieldState.Empty, Main.ChessFieldState.Empty},
-            {Main.ChessFieldState.Empty, Main.ChessFieldState.Black, Main.ChessFieldState.Empty, Main.ChessFieldState.Black, Main.ChessFieldState.Empty, Main.ChessFieldState.Black, Main.ChessFieldState.Empty, Main.ChessFieldState.Black},
-            {Main.ChessFieldState.Black, Main.ChessFieldState.Empty, Main.ChessFieldState.Black, Main.ChessFieldState.Empty, Main.ChessFieldState.Black, Main.ChessFieldState.Empty, Main.ChessFieldState.Black, Main.ChessFieldState.Empty},
-            {Main.ChessFieldState.Empty, Main.ChessFieldState.Black, Main.ChessFieldState.Empty, Main.ChessFieldState.Black, Main.ChessFieldState.Empty, Main.ChessFieldState.Black, Main.ChessFieldState.Empty, Main.ChessFieldState.Black},
+    private static final ChessFieldState[][] chessStates = new ChessFieldState[][] {
+            {ChessFieldState.White, ChessFieldState.Empty, ChessFieldState.White, ChessFieldState.Empty, ChessFieldState.White, ChessFieldState.Empty, ChessFieldState.White, ChessFieldState.Empty},
+            {ChessFieldState.Empty, ChessFieldState.White, ChessFieldState.Empty, ChessFieldState.White, ChessFieldState.Empty, ChessFieldState.White, ChessFieldState.Empty, ChessFieldState.White},
+            {ChessFieldState.White, ChessFieldState.Empty, ChessFieldState.White, ChessFieldState.Empty, ChessFieldState.White, ChessFieldState.Empty, ChessFieldState.White, ChessFieldState.Empty},
+            {ChessFieldState.Empty, ChessFieldState.Empty, ChessFieldState.Empty, ChessFieldState.Empty, ChessFieldState.Empty, ChessFieldState.Empty, ChessFieldState.Empty, ChessFieldState.Empty},
+            {ChessFieldState.Empty, ChessFieldState.Empty, ChessFieldState.Empty, ChessFieldState.Empty, ChessFieldState.Empty, ChessFieldState.Empty, ChessFieldState.Empty, ChessFieldState.Empty},
+            {ChessFieldState.Empty, ChessFieldState.Black, ChessFieldState.Empty, ChessFieldState.Black, ChessFieldState.Empty, ChessFieldState.Black, ChessFieldState.Empty, ChessFieldState.Black},
+            {ChessFieldState.Black, ChessFieldState.Empty, ChessFieldState.Black, ChessFieldState.Empty, ChessFieldState.Black, ChessFieldState.Empty, ChessFieldState.Black, ChessFieldState.Empty},
+            {ChessFieldState.Empty, ChessFieldState.Black, ChessFieldState.Empty, ChessFieldState.Black, ChessFieldState.Empty, ChessFieldState.Black, ChessFieldState.Empty, ChessFieldState.Black},
     };
 
     private void alphabetLine() {
@@ -51,7 +51,7 @@ public class Board {
         System.out.println("+");
     }
 
-    private void chessDesk() {
+    public void printBoard() {
         alphabetLine();
         int i = 0;
         while(i < 8) {
