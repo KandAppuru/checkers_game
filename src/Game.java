@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class Game {
-    public static void menu() {
+    private void menu() {
         System.out.println("1 — Start new game\n2 — Records\n3 — History\n4 — Quit the game");
         Scanner scanner = new Scanner(System.in);
         int choice = scanner.nextInt();
@@ -33,7 +33,7 @@ public class Game {
             }
         }
     }
-    public static void menuOpener() {
+    private void menuOpener() {
         Scanner scanner = new Scanner(System.in);
         int choice = scanner.nextInt();
         if(choice == 1) {
@@ -46,7 +46,7 @@ public class Game {
             menuOpener();
         }
     }
-    public static void gameMenu() {
+    public void gameMenu() {
         System.out.println("Hello! Ready to start?");
         System.out.println("1 — Yes, 2 — No");
         menuOpener();
