@@ -1,6 +1,5 @@
 import java.util.Scanner;
 
-
 public class Game {
     private void menu() {
         System.out.println("1 — Start new game\n2 — Records\n3 — History\n4 — Quit the game");
