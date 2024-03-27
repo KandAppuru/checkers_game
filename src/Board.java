@@ -1,3 +1,6 @@
+import java.util.Scanner;
+import java.util.regex.Pattern;
+
 public class Board {
 
     private enum ChessFieldState {White, Black, Empty}
@@ -59,5 +62,31 @@ public class Board {
         }
         lineHead();
         alphabetLine();
+    }
+    static Pattern pattern = Pattern.compile("^\\s*[a-hA-H][1-8]\\s*[,\\-~>]{0,2}\\s*[a-hA-H][1-8]\\s*$");
+    public void move() {
+        Scanner scanner = new Scanner(System.in);
+        do {
+            System.out.println("To make a move, use following regular expression:\n[current checker`s position on a desk][>][final checker`s position]\nExample: A1>C3");
+            System.out.println("Waiting for your move");
+            String move = scanner.nextLine();
+            if (move.equals("0")) break;
+            boolean result = pattern.matcher(move).matches();//и это
+            System.out.println("Is move valid? " + result);
+            String[] splitresults = move.trim().split("[ ,\\-~>]+");//нужно это
+            String from = splitresults[0].toLowerCase();
+            int fromX = from.charAt(0)-'a';
+            int fromY = from.charAt(1)-'1';
+            String to = splitresults[1].toLowerCase();
+            int toX = to.charAt(0)-'a';
+            int toY = to.charAt(1)-'1';
+            System.out.println("fromX: " + fromX + ", fromY: " + fromY + ", toX: " + toX + ", toY: " + toY);
+            System.out.println(chessStates[fromY][fromX]);
+            System.out.println(chessStates[toY][toX]);
+            System.out.println("splitresults:");
+            for (String splitresult : splitresults) {
+                System.out.println(splitresult);
+            }
+        } while (true);
     }
 }

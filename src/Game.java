@@ -1,5 +1,6 @@
 import java.util.Scanner;
 
+
 public class Game {
     private void menu() {
         System.out.println("1 — Start new game\n2 — Records\n3 — History\n4 — Quit the game");
@@ -14,6 +15,7 @@ public class Game {
             System.out.println("Player 2 name: " + name2);
             Board newBoard = new Board();
             newBoard.printBoard();
+            newBoard.move();
         } else if (choice == 2) {
             System.out.println("Work in progress");
             menu();
