@@ -67,8 +67,8 @@ public class Board {
 
     public void move(Cell from, Cell to) {
         if(chessStates[from.getY()][from.getX()] == ChessFieldState.Empty) {
-            System.out.println("There is no checker in your cell. Try it again");
-            return;
+            throw new IllegalArgumentException("There is no checker in your cell. Try it again");
+
         }  //my variant
         System.out.println("There is no checker in your cell. Try it again");
         System.out.println("fromX: " + from.getX() + ", fromY: " + from.getY() + ", toX: " + to.getX() + ", toY: " + to.getY());
