@@ -1,9 +1,12 @@
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public class Game {
+    static Pattern pattern = Pattern.compile("^\\s*[a-hA-H][1-8]\\s*[,\\-~>]{0,2}\\s*[a-hA-H][1-8]\\s*$");
+    private Board board;
+    Scanner scanner = new Scanner(System.in);
     private void menu() {
         System.out.println("1 — Start new game\n2 — Records\n3 — History\n4 — Quit the game");
-        Scanner scanner = new Scanner(System.in);
         int choice = scanner.nextInt();
         if (choice == 1) {
             System.out.println("Write name for Player 1");
@@ -12,9 +15,15 @@ public class Game {
             System.out.println("Write name for Player 2");
             String name2 = scanner.next();
             System.out.println("Player 2 name: " + name2);
-            Board newBoard = new Board();
-            newBoard.printBoard();
-            newBoard.move();
+            board = new Board();
+            board.printBoard();
+            do {
+                String[] moveAction = askToMove(scanner);
+                Cell moveTo = getCellMoveTo(moveAction);
+                Cell moveFrom = getCellMoveFrom(moveAction);
+                board.move(moveFrom, moveTo);
+                board.printBoard();
+            } while(true);
         } else if (choice == 2) {
             System.out.println("Work in progress");
             menu();
@@ -34,6 +43,27 @@ public class Game {
             }
         }
     }
+
+    private Cell getCellMoveFrom(String[] moveAction) {
+        String from = moveAction[0].toLowerCase();
+        return new Cell(from.charAt(0)-'a', from.charAt(1)-'1');
+    }
+
+    private Cell getCellMoveTo(String[] moveAction) {
+        String to = moveAction[1].toLowerCase();
+        return new Cell(to.charAt(0)-'a', to.charAt(1)-'1');
+    }
+
+    public String[] askToMove(Scanner scanner) {
+        System.out.println("To make a move, use following regular expression:\n[current checker`s position on a desk][>][final checker`s position]\nExample: A1>C3");
+        System.out.println("Waiting for your move");
+        String move = scanner.next();
+//        if (move.equals("0")) break;
+        boolean result = pattern.matcher(move).matches();
+        System.out.println("Is move valid? " + result);
+        return move.trim().split("[ ,\\-~>]+");
+    }
+
     private void menuOpener() {
         Scanner scanner = new Scanner(System.in);
         int choice = scanner.nextInt();
