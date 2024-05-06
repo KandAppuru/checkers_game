@@ -64,12 +64,30 @@ public class Board {
         lineHead();
         alphabetLine();
     }
-
-    public void move(Cell from, Cell to) {
-        if(chessStates[from.getY()][from.getX()] == ChessFieldState.Empty) {
+    private void moveValidityCheck(Cell from, Cell to) {
+        int xAbsDiff = Math.abs(from.getX() - to.getX());
+        int yAbsDiff = Math.abs(from.getY() - to.getY());
+        if (chessStates[from.getY()][from.getX()] == ChessFieldState.Empty) {
             throw new IllegalArgumentException("There is no checker in your cell. Try it again");
-
         }  //my variant
+        if (xAbsDiff != yAbsDiff) {
+            throw new IllegalArgumentException("Move not by diagonal");
+        }
+        if (xAbsDiff == 0) {
+            throw new IllegalArgumentException("You can`t move a checker to itself`s position");
+        }
+        if (xAbsDiff > 2) {
+            throw new IllegalArgumentException("Your move is too long");
+        }
+        if (xAbsDiff == 2 | chessStates[from.getY()][from.getX()] != chessStates[to.getY() - 1][to.getX() - 1] && chessStates[from.getY()][from.getX()] != chessStates[to.getY() + 1][to.getX() + 1] && chessStates[from.getY()][from.getX()] != chessStates[to.getY() + 1][to.getX() - 1] && chessStates[from.getY()][from.getX()] != chessStates[to.getY() - 1][to.getX() + 1]) {
+            throw new IllegalArgumentException("No enemy checker, move is not possible");
+        }
+        if (chessStates[to.getY()][to.getX()] != ChessFieldState.Empty | xAbsDiff == 1) {
+            throw new IllegalArgumentException("Target cell isn`t empty");
+        }
+    }
+    public void move(Cell from, Cell to) {
+        moveValidityCheck(from, to);
         System.out.println("There is no checker in your cell. Try it again");
         System.out.println("fromX: " + from.getX() + ", fromY: " + from.getY() + ", toX: " + to.getX() + ", toY: " + to.getY());
         System.out.println(chessStates[from.getY()][from.getX()]);
